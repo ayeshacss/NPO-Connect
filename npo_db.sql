@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 02, 2023 at 10:53 PM
+-- Generation Time: Aug 03, 2023 at 12:40 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -51,7 +51,7 @@ INSERT INTO `organization` (`organization_id`, `number`, `address`, `state`, `ci
 (8, 800444777, '555 Maple Ln', 'CA', 'San Francisco', 'Doctors Without Borders', NULL, 'images/8/Doctors_Without_Borders_Logo.png', 'Doctors Without Borders is a charity that provides humanitarian medical care. It is a non-governmental organisation (NGO) of French origin known for its projects in conflict zones and in countries affected by endemic diseases.[1] The organisation provides care for diabetes, drug-resistant infections, HIV/AIDS, hepatitis C, tropical and neglected diseases, tuberculosis, vaccines and COVID-19. ', 'Health'),
 (9, 800222333, '444 Cedar Ave', 'IL', 'Springfield', 'World Wildlife Fund', NULL, 'images/9/WWF_Logo.png', 'The World Wide Fund for Nature (WWF) is a Swiss-based international non-governmental organization founded in 1961 that works in the field of wilderness preservation and the reduction of human impact on the environment.[4] It was formerly named the World Wildlife Fund, which remains its official name in Canada and the United States.', 'Animal Conservation'),
 (10, 800666999, '777 Birch St', 'TX', 'Houston', 'UNICEF', NULL, 'images/10/unicef_logo.png', 'UNICEF originally called the United Nations International Children\'s Emergency Fund in full, now officially United Nations Children\'s Fund, is an agency of the United Nations responsible for providing humanitarian and developmental aid to children worldwide. The agency is among the most widespread and recognizable social welfare organizations in the world, with a presence in 192 countries and territories.', 'Poverty'),
-(11, 800888222, '888 Pine St', 'NY', 'Albany', 'Amnesty International', NULL, '', 'Amnesty International (also referred to as Amnesty or AI) is an international non-governmental organization focused on human rights, with its headquarters in the United Kingdom. The stated mission of the organization is to campaign for \"a world in which every person enjoys all of the human rights enshrined in the Universal Declaration of Human Rights and other international human rights instruments.\"', 'Human Rights'),
+(11, 800888222, '888 Pine St', 'NY', 'Albany', 'Amnesty International', NULL, 'images/11/Amnesty_International_Logo.svg', 'Amnesty International (also referred to as Amnesty or AI) is an international non-governmental organization focused on human rights, with its headquarters in the United Kingdom. The stated mission of the organization is to campaign for \"a world in which every person enjoys all of the human rights enshrined in the Universal Declaration of Human Rights and other international human rights instruments.\"', 'Human Rights'),
 (12, 800999111, '999 Oak Ave', 'FL', 'Orlando', 'Oxfam', NULL, 'images/12/Oxfam_Logo.png', 'Oxfam is a British-founded confederation of 21 independent charitable organizations focusing on the alleviation of global poverty, founded in 1942 and led by Oxfam International.', 'Poverty');
 
 -- --------------------------------------------------------
