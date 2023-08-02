@@ -282,10 +282,11 @@ $result = mysqli_query($connection, $query);
    <input type="hidden" name="search" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
    <label for="sort">Sort By:</label>
    <select name="sort" id="sort" onchange="document.getElementById('sortForm').submit()">
-       <option value="" <?php echo ($sortColumn === '') ? 'selected' : ''; ?>>-- No Sorting --</option>
-       <option value="organization_name" <?php echo ($sortColumn === 'organization_name') ? 'selected' : ''; ?>>Name</option>
-       <option value="city" <?php echo ($sortColumn === 'city') ? 'selected' : ''; ?>>City</option>
-       <option value="state" <?php echo ($sortColumn === 'state') ? 'selected' : ''; ?>>State</option>
+     <option value="number" <?php echo ($sortColumn === 'number') ? "selected" : ""; ?>>Number</option>
+          <option value="cause" <?php echo ($sortColumn === 'cause') ? "selected" : ""; ?>>Cause</option>
+          <option value="address" <?php echo ($sortColumn === 'address') ? "selected" : ""; ?>>Address</option>
+          <option value="state" <?php echo ($sortColumn === 'state') ? "selected" : ""; ?>>State</option>
+          <option value="city" <?php echo ($sortColumn === 'city') ? "selected" : ""; ?>>City</option>
    </select>
 
    <input type="hidden" id="sortOrder" name="order" value="<?php echo isset($_GET['order']) ? $_GET['order'] : ''; ?>">
