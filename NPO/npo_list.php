@@ -28,13 +28,12 @@ if (isset($_GET['delete_id'])) {
 // Retrieve NPO data from the "organizations" table
 $query = "SELECT * FROM organization";
 
-// Initialize the filter conditions array.
 $conditions = [];
 
 // Apply search filter if search query is provided
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 if (!empty($search)) {
-    $query .= " WHERE organization_name LIKE '%$search%' OR organization_id LIKE '%$search%' OR number LIKE '%$search%' OR address LIKE '%$search%' OR state LIKE '%$search%' OR city LIKE '%$search%' OR cause LIKE '%$search%'";
+    $conditions[] = "(organization_name LIKE '%$search%' OR address LIKE '%$search%' OR state LIKE '%$search%' OR city LIKE '%$search%')";
 }
 
 // Get distinct states
@@ -48,20 +47,18 @@ $causesResult = mysqli_query($connection, $causesQuery);
 $causes = mysqli_fetch_all($causesResult, MYSQLI_ASSOC);
 
 
-
-// Apply state filter if state is provided.
+// Apply state filter if state is provided
 $state = isset($_GET['state']) ? $_GET['state'] : '';
 if (!empty($state)) {
     $conditions[] = "state = '$state'";
 }
 
-// Apply cause filter if cause is provided.
+// Apply cause filter if cause is provided
 $cause = isset($_GET['cause']) ? $_GET['cause'] : '';
 if (!empty($cause)) {
     $conditions[] = "cause = '$cause'";
 }
 
-// Append conditions to the query.
 if (count($conditions) > 0) {
     $query .= " WHERE " . implode(' AND ', $conditions);
 }
@@ -69,9 +66,10 @@ if (count($conditions) > 0) {
 // Apply sort if sort column and order are provided
 $sortColumn = isset($_GET['sort']) ? $_GET['sort'] : '';
 $sortOrder = isset($_GET['order']) ? $_GET['order'] : '';
-if (!empty($sortColumn) && !empty($sortOrder)) {
+if (!empty($sortColumn)) {
     $query .= " ORDER BY $sortColumn $sortOrder";
 }
+
 
 // Apply pagination
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -281,7 +279,6 @@ $result = mysqli_query($connection, $query);
     <option value="<?php echo $causeItem['cause']; ?>" <?php echo ($_GET['cause'] == $causeItem['cause']) ? 'selected' : ''; ?>><?php echo $causeItem['cause']; ?></option>
   <?php endforeach; ?>
   </select>
-  <form id="sortForm" method="GET" action="">
    <input type="hidden" name="search" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
    <label for="sort">Sort By:</label>
    <select name="sort" id="sort" onchange="document.getElementById('sortForm').submit()">
