@@ -1,15 +1,17 @@
 <!-- navigation.php -->
 <style>
+
        header {
-            background-color: #22223B;
-            color: white;
+            background-color: #333;
+            color: #fff;
             padding: 20px;
         }
 
         nav {
-            background-color: #9A8C98;
+            background-color: #f2f2f2;
             padding: 10px;
             max-width: 100%;
+
         }
 
         .navLinks {
@@ -25,17 +27,25 @@
         }
 
         .navLink {
-            color: #22223B;
+            color: #333;
             text-decoration: none;
-            font-weight: bold;
             padding: 5px;
         }
 
         .navLink:hover {
-            background-color: #22223B;
-            color: #fff;
+            border-bottom: 2px solid #333;
+          
         }
+/*  
+        .navLinks li:last-child {
+            align-self: flex-end;
+        } */
+
+
+        
 </style>
+
+
 <nav>
     <!-- Title -->
    <ul class="navLinks" id="navLinks">
@@ -47,7 +57,7 @@
 <li><a class="navLink" href="reports.php">Reports</a></li>
    <!-- Show the following links only to logged in users with the user_type of "superadmin" -->
     <?php if (isset($_SESSION['user_type'])): ?>
-
+        
             <?php if ($_SESSION['user_type'] == 'superadmin'): ?>
                     <li><a class="navLink" href="users_list.php">Users</a></li>
                     <?php endif; ?>
@@ -55,6 +65,6 @@
     <?php else: ?>
         <li><a class="navLink" href="login.php">Login</a></li>
     <?php endif; ?>
-
+        
    </ul>
 </nav>

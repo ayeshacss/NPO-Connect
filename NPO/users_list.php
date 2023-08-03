@@ -230,16 +230,18 @@ $result = mysqli_query($connection, $query);
         if (mysqli_num_rows($result) > 0) {
             echo "<table id=\"userTable\">";
             echo "<tr><th onclick=\"sortTable('id')\">ID <span class=\"sort-arrow\">" . ($sortColumn === 'id' ? ($sortOrder === 'asc' ? '▲' : '▼') : '') . "</span></th><th onclick=\"sortTable('fullname')\">Full Name <span class=\"sort-arrow\">" . ($sortColumn === 'fullname' ? ($sortOrder === 'asc' ? '▲' : '▼') : '') . "</span></th><th onclick=\"sortTable('email')\">Email <span class=\"sort-arrow\">" . ($sortColumn === 'email' ? ($sortOrder === 'asc' ? '▲' : '▼') : '') . "</span></th><th onclick=\"sortTable('user_type')\">User Type<span class=\"sort-arrow\">" . ($sortColumn === 'user_type' ? ($sortOrder === 'asc' ? '▲' : '▼') : '') . "</span></th><th>Actions</th></tr>";
-
+            $rowCount = 1;
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr>";
-                echo "<td>" . $row['id'] . "</td>";
+                echo "<td>" . $rowCount . "</td>";
                 echo "<td>" . $row['fullname'] . "</td>";
                 echo "<td>" . $row['email'] . "</td>";
                 echo "<td>" . $row['user_type'] . "</td>";
                 echo "<td class=\"actions\"><button title=\"Update an NPO\" onclick=\"location.href='update_user.php?id=" . $row['id'] . "'\">Update</button><button title=\"Delete an NPO\" onclick=\"deleteUser(" . $row['id'] . ")\">Delete</button><button title=\"Assign an NPO\" onclick=\"location.href='assign.php?id=" . $row['id'] . "'\">Assign</button></td>";
                 echo "</td>";
                 echo "</tr>";
+
+                $rowCount++;
             }
 
             echo "</table>";

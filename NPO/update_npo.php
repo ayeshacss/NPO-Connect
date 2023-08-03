@@ -26,8 +26,8 @@ if (isset($_GET['id'])) {
         $state = $row['state'];
         $city = $row['city'];
         $description = $row['description'];
-        $logoPath = $row['image']; // Gets the existing logo path
         $cause = $row['cause'];
+        $logoPath = $row['image']; // Gets the existing logo path
     } else {
         echo "NPO not found.";
         exit;
@@ -37,6 +37,8 @@ if (isset($_GET['id'])) {
     exit;
 }
 
+
+
 // Checks if the form is submitted for updating the NPO record
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve the updated values from the form
@@ -45,20 +47,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $address = $_POST['address'];
     $state = $_POST['state'];
     $city = $_POST['city'];
-    $description = $_POST['description'];
     $cause = $_POST['cause'];
+    $description = $_POST['description'];
 
     // Handle logo upload if a new logo is provided
-    if ($_FILES['image_url']['error'] === UPLOAD_ERR_OK) {
-        $logoName = $_FILES['image_url']['name'];
-        $logoTmpName = $_FILES['image_url']['tmp_name'];
-        $logoPath = "images/" . $logoName;
+    if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
+        $logoName = $_FILES['image']['name'];
+        $logoTmpName = $_FILES['image']['tmp_name'];
+        $logoPath = "images/" . $logoName; 
 
         move_uploaded_file($logoTmpName, $logoPath);
     }
 
     // Update the NPO record in the "organizations" table
-    $updateQuery = "UPDATE organization SET organization_name = '$organizationName', number = '$number', address = '$address', state = '$state', city = '$city', description = '$description', cause = '$cause', image_url = '$logoPath' WHERE organization_id = '$npoId'";
+    $updateQuery = "UPDATE organization SET organization_name = '$organizationName', number = '$number', address = '$address', state = '$state', city = '$city', cause = '$cause', description = '$description', image = '$logoPath' WHERE organization_id = '$npoId'";
     $updateResult = mysqli_query($connection, $updateQuery);
 
     if ($updateResult) {
@@ -146,10 +148,10 @@ mysqli_close($connection);
             <input type="text" name="state" id="state" value="<?php echo $state; ?>" required>
             <label for="city">City:</label>
             <input type="text" name="city" id="city" value="<?php echo $city; ?>" required>
+            <label for="cause">Cause:</label>
+            <input type="text" name="cause" id="cause" value="<?php echo $cause; ?>" required>
             <label for="description" > Description:</label>
             <textarea name= "description" id="description" rows=5 cols=50 value="<?php echo $description; ?>"><?php echo $description; ?></textarea>
-            <label for="city">Cause:</label>
-            <input type="text" name="cause" id="cause" value="<?php echo $cause; ?>" required>
             <label for="image">Choose New Image:</label>
             <input type="file" name="image" id="image" accept="image/*">
             <button type="submit">Update</button>

@@ -7,7 +7,7 @@ if (isset($_SESSION['user_type'])) {
         header("Location: users_list.php");
         exit;
     } else {
-        header("Location: home.php");
+        header("Location: npo_list.php");
         exit;
     }
 }

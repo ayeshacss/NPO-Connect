@@ -46,7 +46,6 @@ $npoResult = mysqli_query($connection, $npoQuery);
             color: #fff;
             padding: 20px;
         }
-
         main {
             padding: 20px;
             max-width: 100%;
@@ -55,7 +54,6 @@ $npoResult = mysqli_query($connection, $npoQuery);
             align-items: center;
             justify-content: center;
         }
-
         h1 {
             color: #333;
         }

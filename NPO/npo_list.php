@@ -282,11 +282,13 @@ $result = mysqli_query($connection, $query);
    <input type="hidden" name="search" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
    <label for="sort">Sort By:</label>
    <select name="sort" id="sort" onchange="document.getElementById('sortForm').submit()">
-     <option value="number" <?php echo ($sortColumn === 'number') ? "selected" : ""; ?>>Number</option>
-          <option value="cause" <?php echo ($sortColumn === 'cause') ? "selected" : ""; ?>>Cause</option>
-          <option value="address" <?php echo ($sortColumn === 'address') ? "selected" : ""; ?>>Address</option>
-          <option value="state" <?php echo ($sortColumn === 'state') ? "selected" : ""; ?>>State</option>
-          <option value="city" <?php echo ($sortColumn === 'city') ? "selected" : ""; ?>>City</option>
+       <option value="" <?php echo ($sortColumn === '') ? 'selected' : ''; ?>>-- No Sorting --</option>
+            <option value="organization_name" <?php echo ($sortColumn === 'organization_name') ? "selected" : ""; ?>>Name</option>
+            <option value="number" <?php echo ($sortColumn === 'number') ? "selected" : ""; ?>>Number</option>
+            <option value="cause" <?php echo ($sortColumn === 'cause') ? "selected" : ""; ?>>Cause</option>
+            <option value="address" <?php echo ($sortColumn === 'address') ? "selected" : ""; ?>>Address</option>
+            <option value="state" <?php echo ($sortColumn === 'state') ? "selected" : ""; ?>>State</option>
+            <option value="city" <?php echo ($sortColumn === 'city') ? "selected" : ""; ?>>City</option>
    </select>
 
    <input type="hidden" id="sortOrder" name="order" value="<?php echo isset($_GET['order']) ? $_GET['order'] : ''; ?>">
@@ -301,8 +303,8 @@ $result = mysqli_query($connection, $query);
 
     </form>
     <form id="searchForm" method="GET" action="">
-       <label for="search">Search:</label>
-       <input type="text" name="search" id="search" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+         <label for="search">Search:</label>
+        <input type="text" name="search" id="search" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>" oninput="filterTable()">
     </form>
     </div>
   </div>
@@ -317,9 +319,11 @@ $result = mysqli_query($connection, $query);
             echo "<tr><th onclick=\"sortTable('organization_id')\">ID <span class=\"sort-arrow\">" . ($sortColumn === 'organization_id' ? ($sortOrder === 'asc' ? '▲' : '▼') : '') . "</span></th><th onclick=\"sortTable('organization_name')\">Name <span class=\"sort-arrow\">" . ($sortColumn === 'organization_name' ? ($sortOrder === 'asc' ? '▲' : '▼') : '') . "</span></th><th onclick=\"sortTable('number')\">Number <span class=\"sort-arrow\">" . ($sortColumn === 'number' ? ($sortOrder === 'asc' ? '▲' : '▼') : '') . "</span></th><th onclick=\"sortTable('cause')\">Cause <span class=\"sort-arrow\">" . ($sortColumn === 'cause' ? ($sortOrder === 'asc' ? '▲' : '▼') : '') . "</span></th><th onclick=\"sortTable('address')\">Address <span class=\"sort-arrow\">" . ($sortColumn === 'address' ? ($sortOrder === 'asc' ? '▲' : '▼') : '') . "</span></th><th onclick=\"sortTable('state')\">State <span class=\"sort-arrow\">" . ($sortColumn === 'state' ? ($sortOrder === 'asc' ? '▲' : '▼') : '') . "</span></th><th onclick=\"sortTable('city')\">City <span class=\"sort-arrow\">" . ($sortColumn === 'city' ? ($sortOrder === 'asc' ? '▲' : '▼') : '') . "</span></th>" . ($actionsHeader !== '' ? $actionsHeader : '') . "</tr>";
 
             // output data of each row
+
+            $rowCount = 1;
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr>";
-                echo "<td>" . $row['organization_id'] . "</td>";
+                echo "<td>" .$rowCount. "</td>";
                 echo "<td>" . $row['organization_name'] . "</td>";
                 echo "<td>" . $row['number'] . "</td>";
                 echo "<td>" . $row['cause'] . "</td>";
@@ -341,6 +345,8 @@ $result = mysqli_query($connection, $query);
                 }
 
                 echo "</tr>";
+
+                $rowCount++;
             }
 
             echo "</table>";

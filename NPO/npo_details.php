@@ -36,26 +36,25 @@
             padding-bottom: 50px;
         }
 
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
+ 
 
     </style>
 </head>
 <body>
 <header>
-    <h1>NonProfitConnect</h1>
-
-  </header>
-  <?php include 'navigation.php'; ?>
-<?php
+  <?php
 // Start the session
 session_start();
 // Connect to the MySQL database
 include 'db_connection.php';
+
+  echo '<h1>NonProfitConnect' . ' - ' . $row['organization_name'] . '</h1>';
+  ?>
+
+  </header>
+  <?php include 'navigation.php'; ?>
+<?php
+
 
 $npoId = $_GET['npo_id']; // Change "id" to "npo_id"
 
@@ -70,10 +69,10 @@ if ($result && mysqli_num_rows($result) > 0) { // Check if there are any results
 
     // Output the details for the NPO
     echo '<div class="npoDetails">';
-    echo '<img class="npoImage" src="' . $row['image_url'] . '" alt="' . $row['organization_name'] . '">';
+    echo '<img class="npoImage" src="' . $row['image'] . '" alt="' . $row['organization_name'] . '">';
     echo '<div class="heading"><h1>' . $row['organization_name'] . '</h1>';
     echo '<p>Number: ' . $row['number'] . ' | ';
-    echo 'Address: ' . $row['address'] . ', ' . $row['city'] . ', ' . $row['state'] . '</p></div>';
+    echo 'Address: ' . $row['address'] . ', ' . $row['city'] . ', ' . $row['state'] . ' - ' .$row['cause'] . '</p></div>';
     echo '<div class="npoText">';
     echo $row['description'];
     echo '</div>'; // end of npoText
@@ -86,7 +85,5 @@ if ($result && mysqli_num_rows($result) > 0) { // Check if there are any results
 ?>
 
 </body>
-<footer>
-    <p>&copy; <?php echo date("Y"); ?> NonProfitConnect</p>
-</footer>
+<?php include 'footer.php'; ?>
 </html>

@@ -30,6 +30,11 @@ if (isset($_GET['id'])) {
     exit;
 }
 
+// if (!isset($_SESSION['user_id'])) {
+//     header("Location: login.php");
+//     exit;
+// }
+
 // Check if the form is submitted for updating the user record
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve the updated values from the form

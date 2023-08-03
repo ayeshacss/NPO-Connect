@@ -46,7 +46,7 @@ $result2 = mysqli_query($connection, $query2);
         border-collapse: collapse;
         width: 45%;
         text-align: center;
-        border-radius: 10px;
+        border-radius: 5px;
         overflow: hidden;
         box-shadow: 0px 2px 15px rgba(0,0,0,0.1);
     }
@@ -63,7 +63,7 @@ $result2 = mysqli_query($connection, $query2);
 
     th {
       padding: 10px;
-      background-color: #F2E9E4;
+      background-color: #F2F2F2;
     }
 
     footer {
@@ -118,8 +118,6 @@ $result2 = mysqli_query($connection, $query2);
         ?>
         </div>
     </main>
-    <footer>
-        <p>&copy; 2023 NonProfitConnect</p>
-    </footer>
+ <?php include 'footer.php'; ?>
 </body>
 </html>
